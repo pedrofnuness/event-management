@@ -1,13 +1,15 @@
 import { DataSource } from 'typeorm';
+import config from './config';
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "admin",
-  password: "admin",
-  database: "event_management_db",
-  migrations: ["src/database/migrations/*.ts"]
+  host: config.DATABASE_HOST,
+  port: config.DATABASE_PORT,
+  username: config.DATABASE_USERNAME,
+  password: config.DATABASE_PASSWORD,
+  database: config.DATABASE_NAME,
+  migrations: ["src/database/migrations/*.ts"],
+  entities: ["src/database/entities/*.ts"]
 })
 
 AppDataSource.initialize()
