@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { EventStatus } from '../../common/EventStatus.enum';
 
 export class CreateEvents1694807445788 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -18,18 +19,17 @@ export class CreateEvents1694807445788 implements MigrationInterface {
           {
             name: 'status',
             type: 'enum',
-            enum: ['draft', 'upcoming', 'past'],
+            enum: [EventStatus.DRAFT, EventStatus.PAST, EventStatus.UPCOMING],
             enumName: 'event_status',
-            default: "'draft'"
+            default: `'${EventStatus.DRAFT}'`
           },
           {
             name: 'date',
             type: 'timestamp',
           },
           {
-            name: 'hosts',
-            type: 'jsonb',
-            isArray: true,
+            name: 'host_id',
+            type: 'uuid',
           },
           {
             name: 'speakers',
@@ -42,11 +42,19 @@ export class CreateEvents1694807445788 implements MigrationInterface {
             default: 'now()',
           },
         ],
+        foreignKeys: [
+          {
+            name: "fk_events_host",
+            columnNames: ['host_id'],
+            referencedTableName: 'hosts',
+            referencedColumnNames: ['id']
+          }
+        ]
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("events");
+    await queryRunner.dropTable('events');
   }
-};
+}
