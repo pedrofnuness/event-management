@@ -8,8 +8,8 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from "uuid";
 import { Host } from './Host';
-import { EventStatus } from '../../common/EventStatus.enum';
-import Speaker from '../../common/Speaker.interface';
+import { EventStatus } from '../common/EventStatus.enum';
+import Speaker from '../common/Speaker.interface';
 
 
 @Entity("events")
