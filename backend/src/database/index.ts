@@ -5,5 +5,5 @@ AppDataSource.initialize()
     console.log("Database has been initialized!")
   })
   .catch((err) => {
-    console.error("Error during Database initialization: ", err)
+    throw new Error(`Database failed to initialize. ${err}`,)
   })
