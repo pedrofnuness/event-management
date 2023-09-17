@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 import config from './config';
+import { Host } from './src/entities/Host';
+import { Event } from './src/entities/Event';
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -9,13 +11,5 @@ export const AppDataSource = new DataSource({
   password: config.DATABASE_PASSWORD,
   database: config.DATABASE_NAME,
   migrations: ["src/database/migrations/*.ts"],
-  entities: ["src/database/entities/*.ts"]
+  entities: [Host, Event]
 })
-
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Data Source has been initialized!")
-  })
-  .catch((err) => {
-    console.error("Error during Data Source initialization", err)
-  })
