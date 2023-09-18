@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only src/server.ts",
+    "dev": "yarn seed && ts-node-dev --transpile-only src/server.ts",
     "seed": "ts-node-dev src/services/seeds/seed-host.ts",
     "create-migration": "ts-node-dev node_modules/typeorm/cli.js migration:create",
     "run-migration": "ts-node-dev node_modules/typeorm/cli.js migration:run -- -d data-source.ts",
