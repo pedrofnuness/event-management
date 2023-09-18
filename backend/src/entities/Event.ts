@@ -11,7 +11,6 @@ import { Host } from './Host';
 import { EventStatus } from '../common/EventStatus.enum';
 import Speaker from '../common/Speaker.interface';
 
-
 @Entity("events")
 export class Event {
   @PrimaryColumn({ type: 'uuid' })
