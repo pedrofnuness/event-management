@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
-import { EventStatus } from '../../common/EventStatus.enum';
+import { EventStatus } from '../../common/enum/EventStatus.enum';
 
 export class CreateEvents1694807445788 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -34,7 +34,6 @@ export class CreateEvents1694807445788 implements MigrationInterface {
           {
             name: 'speakers',
             type: 'jsonb',
-            isArray: true,
           },
           {
             name: 'created_at',

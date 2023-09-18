@@ -1,4 +1,4 @@
-import HostInterface from '../common/Host.interface';
+import HostInterface from '../common/interfaces/Host.interface';
 
 export const hostsData: HostInterface[] = [
   { 

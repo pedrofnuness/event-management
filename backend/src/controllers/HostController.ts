@@ -9,7 +9,6 @@ export class HostController {
       const hosts = await hostService.getHosts();
       res.status(200).json(hosts);
     } catch (error) {
-      console.error('Error fetching hosts:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
