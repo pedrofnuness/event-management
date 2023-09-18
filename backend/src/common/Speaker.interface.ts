@@ -1,4 +1,4 @@
-export default interface Speaker {
+export default interface SpeakerInterface {
   name: string;
   role: string;
   avatar: string;
