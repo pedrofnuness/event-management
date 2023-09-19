@@ -1,5 +1,4 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
-import { EventStatus } from '../../common/enum/EventStatus.enum';
 
 export class CreateEvents1694807445788 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -17,15 +16,9 @@ export class CreateEvents1694807445788 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'status',
-            type: 'enum',
-            enum: [EventStatus.DRAFT, EventStatus.PAST, EventStatus.UPCOMING],
-            enumName: 'event_status',
-            default: `'${EventStatus.DRAFT}'`
-          },
-          {
             name: 'date',
             type: 'timestamp',
+						isNullable: true,
           },
           {
             name: 'host_id',

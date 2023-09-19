@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { EventService } from '../services/EventService';
-import EventInterface from '../common/interfaces/Event.interface';
+import EventInterface from '../interfaces/Event.interface';
 import eventBodyValidator from '../helpers/eventBodyValidator';
 import { speakersMock } from '../mocks/speakers.mock';
 

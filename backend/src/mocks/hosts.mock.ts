@@ -1,6 +1,6 @@
-import HostInterface from '../common/interfaces/Host.interface';
+import HostInterface from '../interfaces/Host.interface';
 
-export const hostsData: HostInterface[] = [
+export const hostsMock: HostInterface[] = [
   { 
     name: "Digital Bank", 
     avatar: "src/images/digital-bank.png", 

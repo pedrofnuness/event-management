@@ -1,4 +1,5 @@
-import SpeakerInterface from '../common/interfaces/Speaker.interface';
+import SpeakerInterface from '../interfaces/Speaker.interface';
+
 
 export const speakersMock: SpeakerInterface[] = [
   { 

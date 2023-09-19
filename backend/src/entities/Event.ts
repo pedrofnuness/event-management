@@ -8,8 +8,7 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from "uuid";
 import { Host } from './Host';
-import { EventStatus } from '../common/enum/EventStatus.enum';
-import Speaker from '../common/interfaces/Speaker.interface';
+import Speaker from '../interfaces/Speaker.interface';
 
 @Entity("events")
 export class Event {
@@ -19,10 +18,7 @@ export class Event {
   @Column({ type: 'varchar'})
   title: string;
 
-  @Column({ type: 'enum', enum: EventStatus, default: EventStatus.DRAFT })
-  status: EventStatus;
-
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', nullable: true })
   date: Date;
 
   @Column({ type: 'uuid' })
@@ -37,6 +33,8 @@ export class Event {
 
   @CreateDateColumn({ type: 'timestamp', default: 'now()' })
   created_at: Date;
+  
+  status: string;
 
   constructor() {
     if(!this.id) {

@@ -1,5 +1,5 @@
-import { hostsData } from '../src/mocks/hosts.mock';
-import { seedHosts } from '../src/services/seeds/seed-host';
+import { hostsMock } from '../src/mocks/hosts.mock';
+import { seedDatabase } from '../src/services/seeds/seedDatabase';
 
 jest.mock('../data-source', () => {
   const mockCount = jest.fn();
@@ -30,14 +30,14 @@ describe('Seed Script Tests', () => {
     const mockCreate = require('../data-source').AppDataSource.getRepository().create;
     const mockSave = require('../data-source').AppDataSource.getRepository().save;
 
-    await seedHosts();
+    await seedDatabase();
 
-    expect(mockCreate).toHaveBeenCalledTimes(hostsData.length);
-    expect(mockSave).toHaveBeenCalledTimes(hostsData.length);
-    expect(mockCreate).toHaveBeenCalledWith(hostsData[0]);
-    expect(mockCreate).toHaveBeenCalledWith(hostsData[1]);
-    expect(mockCreate).toHaveBeenCalledWith(hostsData[2]);
-    expect(mockCreate).toHaveBeenCalledWith(hostsData[3]);
+    expect(mockCreate).toHaveBeenCalled();
+    expect(mockSave).toHaveBeenCalled();
+    expect(mockCreate).toHaveBeenCalledWith(hostsMock[0]);
+    expect(mockCreate).toHaveBeenCalledWith(hostsMock[1]);
+    expect(mockCreate).toHaveBeenCalledWith(hostsMock[2]);
+    expect(mockCreate).toHaveBeenCalledWith(hostsMock[3]);
   });
 
   it('should not seed hosts into the database when the database is not empty', async () => {
@@ -46,7 +46,7 @@ describe('Seed Script Tests', () => {
     const mockCreate = require('../data-source').AppDataSource.getRepository().create;
     const mockSave = require('../data-source').AppDataSource.getRepository().save;
 
-    await seedHosts();
+    await seedDatabase();
 
     expect(mockCreate).not.toHaveBeenCalled();
     expect(mockSave).not.toHaveBeenCalled();

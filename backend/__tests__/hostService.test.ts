@@ -1,7 +1,7 @@
 import { HostService } from '../src/services/HostService';
 import { Host } from '../src/entities/Host';
 import { AppDataSource } from '../data-source';
-import { hostsData } from '../src/mocks/hosts.mock';
+import { hostsMock } from '../src/mocks/hosts.mock';
 
 jest.mock('../data-source', () => ({
   AppDataSource: {
@@ -16,7 +16,7 @@ describe('Host Service', () => {
 
   it('should fetch hosts from the database', async () => {
     const mockHostRepository = {
-      find: jest.fn().mockResolvedValue(hostsData),
+      find: jest.fn().mockResolvedValue(hostsMock),
     };
 
     AppDataSource.getRepository = jest.fn().mockReturnValue(mockHostRepository);
@@ -26,7 +26,7 @@ describe('Host Service', () => {
     const hosts = await hostService.getHosts();
 
     expect(mockHostRepository.find).toHaveBeenCalled();
-    expect(hosts).toEqual(hostsData);
+    expect(hosts).toEqual(hostsMock);
   });
 
   it('should handle database errors', async () => {

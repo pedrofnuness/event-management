@@ -1,8 +1,12 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../../data-source';
-import EventInterface from '../common/interfaces/Event.interface';
+import EventInterface from '../interfaces/Event.interface';
 import { Event } from '../entities/Event';
 import { Host } from '../entities/Host';
+
+interface EventWithStatus extends Event {
+  status: string;
+}
 
 export class EventService {
   private eventRepository: Repository<Event>;
@@ -30,10 +34,23 @@ export class EventService {
     }
   }
 
-  async getEvents(): Promise<Event[]> {
+  async getEvents(): Promise<EventWithStatus[]> {
     try {
       const events = await this.eventRepository.find({
         relations: ["host"]
+      });
+
+      const currentDate = new Date();
+      events.forEach((event) => {
+        if (event.date) {
+          if (event.date > currentDate) {
+            event.status = 'upcoming';
+          } else {
+            event.status = 'past';
+          }
+        } else {
+          event.status = 'draft';
+        }
       });
 
       return events;
