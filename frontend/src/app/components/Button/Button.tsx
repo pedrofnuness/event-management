@@ -1,32 +1,16 @@
 'use client'
 
 import * as Styled from './ButtonStyles';
-import { useRouter } from 'next/navigation'
  
 interface ButtonProps {
   children: React.ReactNode
-  type: string;
+  onClick: () => void;
 };
 
-export default function ButtonComponent({ children, type }: ButtonProps) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    switch (type) {
-      case "navigate":
-        return router.push('/create');
-      
-      case "navigate-back":
-        return router.back();
-
-      default:
-        return () => {}
-    }
-  };
-
+export default function ButtonComponent({ children, onClick }: ButtonProps) {
   return (
     <Styled.ButtonContainer>
-      <Styled.Button onClick={handleClick}>
+      <Styled.Button onClick={onClick}>
         {children}
       </Styled.Button>
     </Styled.ButtonContainer>

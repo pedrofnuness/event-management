@@ -1,5 +1,5 @@
 export interface HostInterface {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   avatar: string;
