@@ -44,12 +44,12 @@ export class EventService {
       events.forEach((event) => {
         if (event.date) {
           if (event.date > currentDate) {
-            event.status = 'upcoming';
+            event.status = 'UPCOMING';
           } else {
-            event.status = 'past';
+            event.status = 'PAST';
           }
         } else {
-          event.status = 'draft';
+          event.status = 'DRAFT';
         }
       });
 

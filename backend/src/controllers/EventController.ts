@@ -3,6 +3,7 @@ import { EventService } from '../services/EventService';
 import EventInterface from '../interfaces/Event.interface';
 import eventBodyValidator from '../helpers/eventBodyValidator';
 import { speakersMock } from '../mocks/speakers.mock';
+import { SSEController } from './SSEController';
 
 export class EventController {
   async createEvent(req: Request, res: Response): Promise<void> {
@@ -20,15 +21,18 @@ export class EventController {
       const createdEvent = await eventService.createEvent({
         ...eventData,
         speakers: speakersMock,
-        date: new Date(eventData.date)
+        date: new Date(eventData.date) || null
       });
 
       if (createdEvent instanceof Error) {
         res.status(400).json({ error: createdEvent.message });
       }
 
+      SSEController.sendUpdate(createdEvent);
+
       res.status(200).json(createdEvent);
     }catch (err) {
+      console.error(err)
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
