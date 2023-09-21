@@ -33,7 +33,7 @@ To get started with the Event Management System frontend, follow these steps:
    yarn install
    ```
 
-2. Start the development server (this will also run the seed script):
+2. Start the development server:
    ```sh
    yarn dev
    ```
@@ -41,36 +41,7 @@ To get started with the Event Management System frontend, follow these steps:
 
 ## Scripts
 
-- Run the development and seed the database:
+- Run the development server:
     ```bash
     yarn dev
     ```
-
-- Seed the database:
-   ```sh
-   yarn seed
-   ```
-
-- Create a new migration:
-    ```sh
-    yarn create-migration
-    ```
-
-- Run migration:
-   ```sh
-   yarn run-migration
-   ```
-
-- Revert migration:
-   ```sh
-   yarn revert-migration
-   ```
-   
-- Run lint:
-   ```sh
-   yarn lint
-   ```
-- Run tests:
-   ```sh
-   yarn test
-   ```
